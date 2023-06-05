@@ -138,14 +138,14 @@ class VelodyneSyncData(BaseRawData, BaseConvert):
             PointField('y', 4, PointField.FLOAT32, 1),
             PointField('z', 8, PointField.FLOAT32, 1),
             PointField('i', 12, PointField.FLOAT32, 1),
-            PointField('l', 16, PointField.FLOAT32, 1)
+            PointField('ring', 16, PointField.FLOAT32, 1)
         ]
 
         pc2_msg.is_bigendian = False
         pc2_msg.point_step = NUM_FIELDS * FLOAT_SIZE_BYTES
 
         pc2_msg.row_step = pc2_msg.point_step * num_points
-        pc2_msg.is_dense = False
+        pc2_msg.is_dense = True
 
         pc2_msg.width = num_points
         pc2_msg.data = np.asarray(points, np.float32).tostring()
